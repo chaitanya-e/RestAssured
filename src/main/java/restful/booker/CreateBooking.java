@@ -36,6 +36,8 @@ public class CreateBooking {
 		validatableResp.log().all(); //prints response details in console
 		validatableResp.statusCode(200);
 		//validatableResp.statusCode(400);
+		
+		//this is another dummy comment to test git
 	}
 
 }
