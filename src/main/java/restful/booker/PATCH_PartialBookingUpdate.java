@@ -2,7 +2,7 @@ package restful.booker;
 
 import io.restassured.RestAssured;
 
-public class PartialBookingUpdate {
+public class PATCH_PartialBookingUpdate {
 	public static void main(String[] args) {
 		RestAssured.given()
 		.log()

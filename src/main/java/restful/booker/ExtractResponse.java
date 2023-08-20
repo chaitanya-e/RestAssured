@@ -2,12 +2,13 @@ package restful.booker;
 
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
+import io.restassured.response.Response;
 
-public class CreateBooking_MethodChaining {
+public class ExtractResponse {
 
 	public static void main(String[] args) {
 		// build request
-		RestAssured
+		Response response = RestAssured
 		.given()
 				.log().all()
 				.baseUri("https://restful-booker.herokuapp.com") // prints only request details
@@ -20,10 +21,15 @@ public class CreateBooking_MethodChaining {
 				.contentType(ContentType.JSON)
 				//hit request
 		.when()
-				.post()
+				.post();
 				//validate response
-		.then()
-				.log().all().statusCode(200);
+		String responseAsString = response.then()
+				.extract().response().asString();
+		
+		System.out.println("String : "+responseAsString);
+		
+		String responseAsPrettyString = response.then().extract().response().asPrettyString();
+		System.out.println("PrettyString : "+responseAsPrettyString);
 
 	}
 

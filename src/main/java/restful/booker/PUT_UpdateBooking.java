@@ -2,7 +2,7 @@ package restful.booker;
 
 import io.restassured.RestAssured;
 
-public class UpdateBooking {
+public class PUT_UpdateBooking {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
