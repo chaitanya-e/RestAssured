@@ -11,12 +11,19 @@ public class RequestSpecification_MultipleBookings {
 	//Identify common request related code in both methods
 	//put them inside request specification to make it reusable
 	RequestSpecification requestSpec;
+	RequestSpecification requestSpec2;
 	
 	@BeforeClass
 	public void createRequestSpec()
 	{
 		requestSpec = 
-				RestAssured.given().log().all().baseUri("https://restful-booker.herokuapp.com")
+				RestAssured.given().log().all();
+	}
+	
+	@BeforeClass
+	public void RequestSpecExtension()
+	{
+		requestSpec2 = RestAssured.given().baseUri("https://restful-booker.herokuapp.com")
 				.contentType(ContentType.JSON);
 	}
 	
@@ -25,6 +32,7 @@ public class RequestSpecification_MultipleBookings {
 		RestAssured
 		.given()
 				.spec(requestSpec)
+				.spec(requestSpec2)
 				.basePath("/booking")
 				.body("{\r\n" + "    \"firstname\" : \"Jim\",\r\n" + "    \"lastname\" : \"Brown\",\r\n"
 						+ "    \"totalprice\" : 111,\r\n" + "    \"depositpaid\" : true,\r\n"
@@ -43,7 +51,8 @@ public class RequestSpecification_MultipleBookings {
 	public void updateBooking()
 	{
 		RestAssured.given()
-		.spec(requestSpec)
+		.spec(requestSpec) // the request spec can be single or multiple
+		.spec(requestSpec2)
 		.basePath("booking/1")
 		.header("Authorization","Basic YWRtaW46cGFzc3dvcmQxMjM=")
 		.body("{\r\n"

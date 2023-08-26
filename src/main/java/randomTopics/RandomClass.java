@@ -1,4 +1,4 @@
-package youtube.retarget.common.RestAssured_API;
+package randomTopics;
 
 import io.restassured.RestAssured;
 
